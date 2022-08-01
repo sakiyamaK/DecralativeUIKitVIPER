@@ -158,7 +158,7 @@ hoge = 3
 
 # 利用するパッケージ管理ツール
 
-<img src="https://gyazo.com/156b1fe69a6385eb5659b85d91726a3a" width=300 />
+<img src="https://i.gyazo.com/e0d3c9eeca65522e297a2929648c8757.png" width=300 />
 
 ## Homebrew
 
