@@ -1,0 +1,136 @@
+name: DecralativeUIKitVIPER
+
+configs:
+  Debug: debug
+  Staging: staging
+  Release: release
+
+#ターゲット間で共通の設定
+settings:
+  #configsで共通の設定
+  base:
+    SWIFT_VERSION: 5.0
+    MARKETING_VERSION: 1.0
+    CURRENT_PROJECT_VERSION: 1
+    DEVELOPMENT_TEAM: ""
+  #configごとの設定
+  configs:
+    Debug:
+      DEBUG_INFORMATION_FORMAT: "dwarf"
+    Staging:
+      DEBUG_INFORMATION_FORMAT: "dwarf"
+    Release:
+      DEBUG_INFORMATION_FORMAT: "dwarf-with-dsym" 
+
+#optionの設定
+options:
+  deploymentTarget:
+    iOS: 14.0
+  xcodeVersion: "13.1"
+
+targets:
+  # アプリ
+  DecralativeUIKitVIPER:
+    type: application
+    platform: iOS
+    #ソースコードのパス
+    sources:
+      - path: DecralativeUIKitVIPER/
+        excludes:
+          - strgen/resource/
+          - strgen/build/google/
+    prebuildScripts:
+      - name: Run SwiftLint
+        script: mint run realm/swiftlint swiftlint --fix --format
+      - name: Run SwiftGen
+        script: |
+          ${PODS_ROOT}/SwiftGen/bin/swiftgen config lint
+          ${PODS_ROOT}/SwiftGen/bin/swiftgen config run
+    info:
+      path: DecralativeUIKitVIPER/Info.plist
+      properties:
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        LSRequiresIPhoneOS: YES
+        UILaunchStoryboardName: "LaunchScreen"
+        UIApplicationSupportsIndirectInputEvents: YES
+        UISupportedInterfaceOrientations~iphone:
+          [UIInterfaceOrientationPortrait]
+        UISupportedInterfaceOrientations~ipad:
+          [UIInterfaceOrientationPortrait]
+    settings:
+      #configsで共通の設定
+      base:
+        # ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        # ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        INFOPLIST_FILE: DecralativeUIKitVIPER/Info.plist
+        # CODE_SIGN_ENTITLEMENTS: DecralativeUIKitVIPER/DecralativeUIKitVIPER.entitlements
+        PRODUCT_NAME: ${TARGET_NAME}${PRODUCT_NAME_PREFIX}
+        PRODUCT_BUNDLE_IDENTIFIER: lorebel${BUNDLE_ID_SUFFIX}
+      #configごとの設定
+      configs:
+        Debug:
+          EXCLUDED_ARCHS[sdk=iphonesimulator*]: arm64
+          MTL_ENABLE_DEBUG_INFO: INCLUDE_SOURCE
+          BUNDLE_ID_SUFFIX: .debug
+          PRODUCT_NAME_PREFIX: D
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+          ONLY_ACTIVE_ARCH: true
+          ENABLE_TESTABILITY: true
+        Staging:
+          MTL_ENABLE_DEBUG_INFO: INCLUDE_SOURCE
+          BUNDLE_ID_SUFFIX: .staging
+          PRODUCT_NAME_PREFIX: S
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: STAGING
+          ONLY_ACTIVE_ARCH: true
+          ENABLE_TESTABILITY: true
+        Release:
+          VALIDATE_PRODUCT: true
+  # # ユニットテスト
+  # DecralativeUIKitVIPERTests:
+  #   type: bundle.unit-test
+  #   platform: iOS
+  #   sources: 
+  #     - path: #テストコードのパスを指定する
+  #   dependencies:
+  #     - package: Nimble
+  #     - package: Quick
+  #     - target: DecralativeUIKitVIPER
+  #   settings:
+  #     TEST_TARGET_NAME: DecralativeUIKitVIPER
+  #     INFOPLIST_FILE: Template_iOSUIKit_VIPERUITests/Info.plist
+  # # UIテスト
+  # DecralativeUIKitVIPERUITests:
+  #   type: bundle.ui-testing
+  #   platform: iOS
+
+#スキームごとの設定
+schemes:
+  DecralativeUIKitVIPER:
+      build:
+        targets:
+          DecralativeUIKitVIPER: all
+      run:
+        config: Debug
+        environmentVariables:
+          AUTO_FILL_LOGIN: true
+          API_LOG: true
+      # test:
+      #   config: Debug
+      #   gatherCoverageData: true
+      #   coverageTargets:
+      #     - DecralativeUIKitVIPER
+      #   targets:
+      #     - name: DecralativeUIKitVIPERTests
+      #       parallelizable: true
+      #       randomExecutionOrder: true
+      #     - name: DecralativeUIKitVIPERUITests
+      #       parallelizable: true
+      #       randomExecutionOrder: true
+      profile:
+        config: Release
+      analyze:
+        config: Debug
+      archive:
+        config: Release
+

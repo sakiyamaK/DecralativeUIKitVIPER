@@ -1,0 +1,10 @@
+general:
+  input_file_path: ./localize.csv
+  output_path: ../
+google:
+  enabled: false
+apple:
+  enabled: true
+  strings_file_name: Localizable.strings
+  swift_file_name: Localize.swift
+  swift_class_name: Localize

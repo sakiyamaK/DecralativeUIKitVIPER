@@ -1,0 +1,12 @@
+input_dir: DecralativeUIKitVIPER/Resources
+output_dir: DecralativeUIKitVIPER/Resources/Generated/
+
+xcassets:
+  - inputs:  Assets.xcassets # 入力パス
+    outputs:
+      - templateName: swift5
+        output: Assets-Constants.swift
+        # params:
+        #   enumName: Logos
+  # outputs.templateName: swift5 # テンプレート指定
+  # outputs.output: ${PROJECT_NAME}/Resources/Generated/DefaultAsset.swift # 生成パス

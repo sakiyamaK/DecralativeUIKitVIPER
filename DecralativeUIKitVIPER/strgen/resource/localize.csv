@@ -1,0 +1,37 @@
+id,en,ja
+close,close,閉じる
+email_login,Email Login,Emailログイン
+apple_login,Apple,Apple
+email_placeholder,sample@gmail.com,sample@gmail.com
+validation_message_input_email,XXX,メールアドレスの形式ではありません
+password_placeholder,please input password,パスワードを入力してください
+validation_message_input_password,XXX,パスワードは3~10文字の半角英数字のみ使用してください
+validation_message_input_password_short,XXX,半角英数、8文字以上
+cancel,cancel,キャンセル
+save,save,保存
+register_lorebel,Register LOREBEL,LOREBELに登録
+register_lorebel_sub,プロフィールを作って、他のユーザーをフォローしたり自分の情報を可視化しよう！,プロフィールを作って、他のユーザーをフォローしたり自分の情報を可視化しよう！
+register_twitter,Register twitter,Twitterで続ける
+register_email,Register Email,メールアドレスで登録
+information_register_1,Reccomend,レコメンドがより最適化されます
+information_register_2,Reccomend,レコメンドがより最適化されます
+have_account,Dou you have acount?,アカウントをお持ちですか？
+login_lorebel,Login LOREBEL,LOREBELでログイン
+login_lorebel2,Login LOREBEL,LOREBELにログイン
+login,login,ログイン
+login_twitter,Login twitter,Twitterでログイン
+login_email,Login Email,メールアドレスでログイン
+first_lorebel,Dou you user Lorebel first?,LOREBELは初めてですか？
+create_account,Create Account,アカウント作成
+name,Name,名前
+user_id,User ID,ユーザーID
+mail_address,Mail Address,メールアドレス
+password,Password,パスワード
+password_confirm,Password,パスワード確認
+forgot_password,Forgot Password,パスワードを忘れた方
+forgot_password2,Forgot Password,パスワードをお忘れの方
+send_email_to_reset_password,Send email to reset password,パスワード再設定用メールの送信
+send_email_to_reset_password_sub,Send email to reset password,ご登録されたメールアドレスをご記入ください。パスワード再設定のためのメールを送信いたします。
+send,send,送信
+remake_password,Remake Password,パスワードの再設定
+following,following,フォロー中

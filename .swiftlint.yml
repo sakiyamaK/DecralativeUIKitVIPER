@@ -1,0 +1,6 @@
+included:
+  - DecralativeUIKitVIPER
+excluded:
+  - Pods
+  - DecralativeUIKitVIPER/Resources/Generated/
+  - DecralativeUIKitVIPER/strgen

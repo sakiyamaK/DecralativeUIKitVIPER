@@ -1,0 +1,4 @@
+VIPER:
+  Target: DecralativeUIKitVIPER
+  TemplateDirectoryPath: ./templates/PuiTemplate/ios/VIPER
+  GenerateRootPath: ./DecralativeUIKitVIPER/Scene
