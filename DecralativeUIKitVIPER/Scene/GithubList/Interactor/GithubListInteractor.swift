@@ -26,7 +26,7 @@ final class GithubListInteractor: HasDisposeBag, GithubListUsecase {
 
     // outputs
     @RxPublished var githubListEntities: [GithubListEntity]?
-    lazy var githubListEntitiesObservable = $githubListEntities.filterNil().delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+    lazy var githubListEntitiesObservable = $githubListEntities.filterNil()
 
     @RxPublished private var _error: Error?
     lazy var error = $_error.filterNil()

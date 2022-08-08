@@ -15,19 +15,14 @@ func void<Element>(_: Element) {
 
 @propertyWrapper
 struct RxPublished<Value> {
-    private var value: Value
-    private let _projectedValue = PublishRelay<Value>()
-    private(set) lazy var projectedValue: Observable<Value> = _projectedValue.asObservable()
-
+    private let _projectedValue: BehaviorRelay<Value>
+    private(set) lazy var projectedValue: Observable<Value> = _projectedValue.asObservable().observe(on: MainScheduler.instance)
     var wrappedValue: Value {
-        get { return value }
-        set {
-            value = newValue
-            _projectedValue.accept(value)
-        }
+        get { return _projectedValue.value }
+        set { _projectedValue.accept(newValue) }
     }
 
     init(wrappedValue: Value) {
-        value = wrappedValue
+        _projectedValue = .init(value: wrappedValue)
     }
 }
