@@ -120,15 +120,28 @@ MakeFile内のcleanが動き`make`で増えたファイルが消える
 
 # VIPERアーキテクチャ
 
-- `View` 画面構成
-- `Router` 画面遷移と全体のコンポーネントの依存関係の設定
-- `Presenter` その他のコンポーネントの中継役
-- `Interactor` API処理やロジックを担当
+- `View`
+  - 画面構成をする
+  - UIKitでいうUIViewController
+  - UIViewを構築してUIViewのアクションを`Presenter`に伝える
+  - UIKitに依存した処理しか書かない
+  - UIViewと自身以外のUIViewControllerと`Presenter`以外のパラメータを持たない
+- `Interactor`
+  - API処理やロジックを担当してデータを持つ
+  - 初期化時のパラメータとして`Dependency`をもらうことでデフォルト値が決まる
+- `Presenter` 
+  - その他のコンポーネントの中継役
+  - データを持たない
+  - ロジックを書かない
+- `Router`
+  - 画面遷移と全体のコンポーネントの依存関係の設定
+- `Entitiy`
+  - その画面で利用するデータ型
+  - 例えばあちこちで使う`User`とかも`typealias XXUserEntity = User`とか名前をつけてその画面のEntityとする
 
-Interactorは複数でもよい
+Interactorは複数でも良いし一つでも良い
 
 MVVMで肥大化していたViewModelを複数のIntearctorに分割してPresenterで中継するイメージ
-
 
 ```
           Router
@@ -138,10 +151,27 @@ View - Presenter --- MainInteractor
                   |- PostAPIInteractor
 ```
 
+
+各コンポーネントは直接繋がずProtocolで繋ぐ
+
+Protocolの名前とClassの名前の対応表
+
+|Class| Protocol|
+|:----|:----|
+|XXViewController| XXView|
+|XXPresenter| XXPresentation|
+|XXInreractor| XXUsecase|
+|XXRouter| XXWireframe|
+|XXEntitiy| --|
+
+
+
 # データ連携
 VIPERのコンポーネント間は`RxSwift`を用いてリアクティブにやっている
 
 さらに`@RxPublished` というPropertyWrapperを用意して普通のパラメータのように渡せる仕組みにしている
+
+初期値をもつのは `Interactor` だけなので、他のコンポーネントはnilにしている
 
 ```swift
 @RxPublished var hoge: Int?
