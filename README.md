@@ -147,9 +147,11 @@ MVVMで肥大化していたViewModelを複数のIntearctorに分割してPresen
 ```
           Router
               |
-View - Presenter --- MainInteractor
+View - Presenter --- MainInteractor 
                   |- GetAPIInteractor
                   |- PostAPIInteractor
+
+Interactorで生成されたEntityが他のコンポーネントに渡されていく
 ```
 
 
@@ -186,6 +188,61 @@ hoge = 1
 hoge = 2
 hoge = 3
 ```
+
+# 画面構成
+
+## DecralativeUIKit
+UIKitのままSwiftUIのように宣言的に書けるライブラリを利用している
+
+https://github.com/sakiyamaK/DeclarativeUIKit
+
+`UILabel`や`UIButton`といったUIKit標準のクラスやメソッドの呼び出しは変わらず、レイアウトだけ宣言的に書ける
+
+```swift
+final class HogeViewController: UIViewController {
+  override func loadView() {
+    super.loadView()
+    // UIScrollViewの中にUIStackViewを置いて
+    // UIView, UIButton, UILabelを並べる
+    UIScrollView.vertical {
+      UIStackView.vertical {
+        UIView().height(200)
+        UIButton().height(200)
+        UILabel().height(200)
+      }
+    }
+  }
+}
+
+```
+
+日本語ドキュメントの各sampleを見ると分かりやすい
+
+https://github.com/sakiyamaK/DeclarativeUIKit/blob/develop/Documentation/ja/index.md
+
+
+
+## ホットリロード
+シミュレータ限定だがソースコードの変更を即時反映するホットリロードの仕組みを入れている
+
+githubから取ってもmac app storeのどちらから取ってもいい
+
+github
+
+https://github.com/johnno1962/InjectionIII
+
+mac app store
+
+https://apps.apple.com/app/injectioniii/id1380446739?mt=12
+
+
+参考リンク
+
+情報が古めだったりSwiftUIで設定していたりするが基本は同じ
+
+https://qiita.com/KoichiroEto/items/5cb149a6e5d74bbdd66c
+
+https://zenn.dev/kalupas226/articles/ee015363625354
 
 # API連携
 
@@ -279,7 +336,7 @@ https://zenn.dev/kenghaya/articles/9f07914156fab5
 
 makeコマンド(macデフォルトである？)
 
-`make`と指定するだけで良いのでシェルのように最初どのシェルを叩けばいいか分からなくなるこおtがない
+`make`と指定するだけで良いのでシェルのように最初どのシェルを叩けばいいか分からなくなることがない
 
 管理ファイルは `Makefile`
 
