@@ -65,7 +65,8 @@ make
 
 MakeFile内のsetupが動き`cocoapods`,`mint`, `pip`で管理しているパッケージのインストールとパッケージの実行をして、最後に`DecralativeUIKitVIPER.xcworkspace`が起動する
 
-##　新規画面の作成
+## 新規画面の作成
+
 ```
 make component name=<component name>
 ```
@@ -185,6 +186,12 @@ hoge = 1
 hoge = 2
 hoge = 3
 ```
+
+# API連携
+
+Moya + Alamofire
+
+あとで追記する
 
 # 利用するパッケージ管理ツール
 
